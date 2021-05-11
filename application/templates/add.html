@@ -1,0 +1,14 @@
+<!--  show a web form  -->
+{% extends 'layout.html' %}  
+{% block body %} 
+<br><br>
+<form action ='' method = 'POST'>
+{{ form.hidden_tag() }}
+{{form.form_name.label}} {{form.form_name}}<br>
+{{form.form_city.label}} {{form.form_city}}<br>
+{{form.form_conference.label}} {{form.form_conference}}<br>
+{{form.form_rank.label}} {{form.form_rank}}<br>
+{{form.submit}}
+</form>
+{% endblock body %} 
+ 
