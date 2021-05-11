@@ -29,6 +29,7 @@ class TestBase(TestCase):# Create the base class
     
 #test to check that each route will get a status code 
 # Write a test class for testing that the home page loads but we are not able to run a get request for delete and update routes.
+#going to the url directly 
 class TestViews(TestBase):
     def test_home_get(self):
         response = self.client.get(url_for('home'))
@@ -54,10 +55,11 @@ class TestRead(TestBase):
 class TestCreate(TestBase):
     def test_create_team(self):
         response = self.client.post(url_for("create"), # the create route when makinhg the team we need to create a post request.
-        data= dict(description = "Create a new team"), # data that we are sending with the post requisition  
+        data= dict(description = "Create a new team", va= nenkfn, ), # data that we are sending with the post requisition  
         follow_redirects= True
         )
-        self.assertIn(b"Create a new team", response.data) #check if the create..team shows up. only shows if it is added to the data base., then you get the actual data itself 
+        self.assertIn(b"Create a new team",  response.data) #check if the create..team shows up. only shows if it is added to the data base., then you get the actual data itself
+        self.assertIn(b"nenkfn",  response.data) 
 
 class TestUpdate(TestBase):
     def test_update_team(self):

@@ -1,7 +1,7 @@
 from application.forms import TeamForm
 from application import app, db
-from application.models import Teams
-from application.forms import TeamForm
+from application.models import Players, Teams
+from application.forms import TeamForm, PlayerForm 
 from flask import render_template, request, redirect, url_for
 
 
@@ -9,8 +9,9 @@ from flask import render_template, request, redirect, url_for
 @app.route("/home")
 def home():
     all_teams = Teams.query.all()
+    all_players = Players.query.all()
     output=""
-    return render_template("index.html", title="Home", all_teams = all_teams)
+    return render_template("index.html", title="Home", all_teams = all_teams, all_players = all_players)
 
 @app.route("/create", methods=["GET", "POST"]) #allow get & post request 
 def create():
@@ -33,7 +34,7 @@ def update(id):
     form= TeamForm()
     team= Teams.query.filter_by(id=id).first()
 
-    form.form_name.data = team.name# put data in the input box 
+    form.form_name.data = team.name # put data in the input box 
     form.form_city.data = team.city
     form.form_conference.data = team.conference
     form.form_rank.data = team.rank
@@ -50,6 +51,24 @@ def update(id):
 @app.route("/delete/<int:id>")
 def delete(id):
     team=Teams.query.filter_by(id=id).first()
+    for player in team.players: 
+        db.session.delete(player)
     db.session.delete(team)
     db.session.commit()
     return redirect(url_for("home"))
+
+
+@app.route("/player/<int:id>",methods=["GET", "POST"])  
+def player(id):
+    form=PlayerForm()
+    if request.method == "POST": 
+        if form.validate_on_submit():
+            new_player = Players(
+                pl_name = form.form_name.data,   # filling in each column 
+                pl_position = form.form_position.data,
+                teamid = id 
+            ) 
+            db.session.add(new_player) # add the new team to the route 
+            db.session.commit() # commit to the data base itself
+            return redirect(url_for("home"))  #redirect back to the home page
+    return render_template("add-Player.html", title = "Add Players to your Teams", form=form) # display ftml file

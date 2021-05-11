@@ -8,3 +8,8 @@ class TeamForm(FlaskForm):
     form_conference= StringField('Enter Team Conference', validators=[Length(min = 1)])
     form_rank= StringField('Enter Team rank position: ', validators=[Length(min = 1)])
     submit=SubmitField('Add Team') # the botton
+
+class PlayerForm(FlaskForm):
+    form_name= StringField('Enter Player name: ', validators=[Length(min = 1)])
+    form_position= StringField('Enter Player Position: ', validators=[Length(min = 1)])
+    submit=SubmitField('Add Team')

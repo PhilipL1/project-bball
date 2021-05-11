@@ -1,5 +1,4 @@
 from application import db
-from datetime import datetime
 
 
 class Teams(db.Model):
@@ -15,6 +14,7 @@ class Players(db.Model):
     pl_name = db.Column(db.String(50), nullable=False)
     pl_position = db.Column(db.String(50), nullable=False)
     teamid= db.Column(db.Integer,db.ForeignKey('teams.id'), nullable=False)
+    
     
 
 
