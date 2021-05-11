@@ -1,55 +1,55 @@
-from application.forms import TaskForm
+from application.forms import TeamForm
 from application import app, db
-from application.models import Tasks
-from application.forms import TaskForm
+from application.models import Teams
+from application.forms import TeamForm
 from flask import render_template, request, redirect, url_for
 
 
 @app.route("/")
 @app.route("/home")
 def home():
-    all_tasks = Tasks.query.all()
+    all_teams = Teams.query.all()
     output=""
-    return render_template("index.html", title="Home", all_tasks = all_tasks)
+    return render_template("index.html", title="Home", all_teams = all_teams)
 
 @app.route("/create", methods=["GET", "POST"]) #allow get & post request 
 def create():
-    form=TaskForm()
+    form=TeamForm()
     if request.method == "POST": #(check to see if the method a post request.)post request: send  the filled/complete info to the route
         if form.validate_on_submit():#check if the form validates 
-            new_task = Tasks(description = form.description.data) #check if new task has been added with the data
-            db.session.add(new_task) # add the new task to the route 
+            new_team = Teams(
+                name = form.form_name.data, 
+                city = form.form_city.data,
+                conference = form.form_conference.data,
+                rank = form.form_rank.data
+            ) #check if new team has been added with the data
+            db.session.add(new_team) # add the new team to the route 
             db.session.commit() # commit to the data base itself
             return redirect(url_for("home"))  #redirect back to the home page
-    return render_template("add.html", title = "Create a Task", form=form)
-
-@app.route("/complete/<int:id>") #button will only do post request  
-def complete(id):
-    task=Tasks.query.filter_by(id=id).first()
-    task.completed =True
-    db.session.commit()
-    return redirect(url_for("home"))
-
-@app.route("/incomplete/<int:id>") #button will only do post request 
-def incomplete(id):
-    task= Tasks.query.filter_by(id=id).first()
-    task.completed =False
-    db.session.commit()
-    return redirect(url_for("home"))
+    return render_template("add.html", title = "Create a Team", form=form) # display ftml file 
 
 @app.route("/update/<int:id>", methods=["GET","POST"]) #buton will get the id & post request 
 def update(id):
-    form= TaskForm()
-    task= Tasks.query.filter_by(id=id).first()
+    form= TeamForm()
+    team= Teams.query.filter_by(id=id).first()
+
+    form.form_name.data = team.name# put data in the input box 
+    form.form_city.data = team.city
+    form.form_conference.data = team.conference
+    form.form_rank.data = team.rank
+
     if request.method =="POST": # id the form has been posted 
-        task.description = form.description.data
+        team.name = form.form_name.data # refere to model.py && send to the data base 
+        team.city = form.form_city.data
+        team.conference = form.form_conference.data
+        team.rank = form.form_rank.data
         db.session.commit()
         return redirect(url_for("home")) 
-    return render_template("update.html", form=form, title="Update Task", task=task)
+    return render_template("update.html", form=form, title="Update Team", team=team)
    
 @app.route("/delete/<int:id>")
 def delete(id):
-    task=Tasks.query.filter_by(id=id).first()
-    db.session.delete(task)
+    team=Teams.query.filter_by(id=id).first()
+    db.session.delete(team)
     db.session.commit()
     return redirect(url_for("home"))
