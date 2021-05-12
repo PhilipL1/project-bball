@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}  <!--   -->
+{% block body %} 
+
+    <h2>Fantasy Teams</h2>
+    {% for team in all_teams %} <!--   -->
+            {{team.name}}
+            <br>
+            {{ team.city}}
+            <br>
+            {{ team.conference}}
+            <br>
+            {{ team.rank}}
+            <br>
+            {% for player in team.players %} 
+            {{ player.pl_name}} {{ player.pl_position}}
+            <br>
+            {% endfor %}
+            <div style = "display:inline;">
+            <form action= "{{url_for('update', id=team.id)}}" >  <!-- url-for(go to webpage) for each team you get the  update button, and id  -->
+                <input type = submit value="Update">  <!-- create 'update' button  -->
+            </form>
+            <form action= "{{url_for('delete', id=team.id)}}" > 
+                <input type = submit value="Delete"> <!-- create 'delete' button  -->
+            </form>
+            <form action= "{{url_for('player', id= team.id)}}" > 
+                <input type = submit value="add Players"> 
+            </form>
+        </div> 
+    {% endfor %}
+
+{% endblock body %}
+    
