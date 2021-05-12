@@ -4,7 +4,7 @@ from flask import url_for
 from flask_testing import TestCase
 
 from application import app, db 
-from application.models import Teams
+from application.models import Teams, Players
 
 class TestBase(TestCase):# Create the base class
     def create_app(self):# Pass in testing configurations for the app. Here we use sqlite without a persistent database for our tests.
@@ -24,7 +24,10 @@ class TestBase(TestCase):# Create the base class
         conference = "West",
         rank = 1
         )# create a new class >>same<<
+        test_player = Players(pl_name= "Kevin", pl_position = "SF")
+        test_team.players.append(test_player)
         db.session.add(test_team)# save users to database
+        db.session.add(test_player)
         db.session.commit()
 
 #Will be called after every test
