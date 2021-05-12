@@ -1,3 +1,4 @@
+from os import name
 import unittest
 from flask import url_for
 from flask_testing import TestCase
@@ -18,7 +19,11 @@ class TestBase(TestCase):# Create the base class
 #Will be called before every test
     def setUp(self): # Set up the database schema(table).   
         db.create_all()# Create table
-        test_team= Teams(description= "Test the flask app")# create a new class >>same<<
+        test_team= Teams(name = "Lakers", 
+        city = "LA", 
+        conference = "West",
+        rank = 1
+        )# create a new class >>same<<
         db.session.add(test_team)# save users to database
         db.session.commit()
 
@@ -38,40 +43,71 @@ class TestViews(TestBase):
     def test_create_get(self):
         response = self.client.get(url_for('create'))
         self.assertEqual(response.status_code, 200)
+    
+    def test_player_get(self):
+        response = self.client.get(url_for('player', id=1))
+        self.assertEqual(response.status_code, 200)
    
     def test_update_get(self):
-        response = self.client.get(url_for('update', id=1), follow_redirects= True)
+        response = self.client.get(url_for('update', id=1))
         self.assertEqual(response.status_code, 200)
 
     def test_delete_get(self):
         response = self.client.get(url_for('delete', id=1), follow_redirects= True)
         self.assertEqual(response.status_code, 200)
+    
 ################################
 class TestRead(TestBase):
     def test_read_team(self):
-        response= self.client.get(url_for("home")) #make a get requisition one of the groups. Read the team in the "home" page 
-        self.assertIn(b"Test the flask app", response.data) # same as test_task above (>>same<<) b= meanscompare text to webpage 
-
+        response= self.client.get(url_for("home"))
+        self.assertIn(b"Lakers", response.data)  
+        self.assertIn(b"LA", response.data) 
+        self.assertIn(b"West", response.data) 
+        
+       
 class TestCreate(TestBase):
     def test_create_team(self):
-        response = self.client.post(url_for("create"), # the create route when makinhg the team we need to create a post request.
-        data= dict(description = "Create a new team", va= nenkfn, ), # data that we are sending with the post requisition  
+        response = self.client.post(url_for("create"), # the create route when making the team we need to create a post request.
+        data= dict(form_name = 'Knicks',
+        form_city = 'New York', 
+        form_conference = 'East', 
+        form_rank = 2), # data that we are sending with the post requisition  
         follow_redirects= True
         )
-        self.assertIn(b"Create a new team",  response.data) #check if the create..team shows up. only shows if it is added to the data base., then you get the actual data itself
-        self.assertIn(b"nenkfn",  response.data) 
+        self.assertIn(b"Knicks", response.data) 
+        self.assertIn(b"New York", response.data) 
+        self.assertIn(b"East", response.data) 
+         
+
+class TestPlayer(TestBase):
+    def test_player_team(self):
+        response = self.client.post(url_for("player", id =1), #id will be 1 in the database
+        data= dict(form_name = 'Lebron James', form_position = 'SF'), 
+        follow_redirects= True
+        )
+        self.assertIn(b'Lebron James', response.data)
+        self.assertIn(b'SF', response.data)
 
 class TestUpdate(TestBase):
     def test_update_team(self):
-        response = self.client.post(url_for("update", id=1), #id will be 1 in the database
-        data = dict(description = "Update a team"), #send info
+        response = self.client.post(url_for("update", id=1), 
+        data= dict(form_name = 'Nets',
+        form_city = 'Brooklyn', 
+        form_conference = 'West', 
+        form_rank = 3),
         follow_redirects= True
         )
-        self.assertIn(b"Update a team", response.data)
+        self.assertIn(b'Nets', response.data)
+        self.assertIn(b'Brooklyn', response.data)
+        self.assertIn(b'West', response.data)
+        
 
 class TestDelete(TestBase):
     def test_delete_team(self):
         response = self.client.get(url_for("delete", id=1), #id will be 1 in the database
         follow_redirects= True
         )
-        self.assertNotIn(b"Test the flask app", response.data)
+        self.assertNotIn(b'Lakers', response.data)
+        self.assertNotIn(b'LA', response.data)
+        self.assertNotIn(b'West', response.data)
+        
