@@ -23,7 +23,11 @@ class TestBase(TestCase):# Create the base class
         city = "LA", 
         conference = "West",
         rank = 1
+<<<<<<< HEAD
         )
+=======
+        )# create a new class >>same<<
+>>>>>>> dev
         test_player = Players(pl_name= "Kevin", pl_position = "SF")
         test_team.players.append(test_player)
         db.session.add(test_team)# save users to database
