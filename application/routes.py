@@ -34,12 +34,13 @@ def update(id):
     form= TeamForm()
     team= Teams.query.filter_by(id=id).first()
 
-    form.form_name.data = team.name # put data in the input box 
-    form.form_city.data = team.city
-    form.form_conference.data = team.conference
-    form.form_rank.data = team.rank
+    if request.method == 'GET':
+        form.form_name.data = team.name # put data in the input box 
+        form.form_city.data = team.city
+        form.form_conference.data = team.conference
+        form.form_rank.data = team.rank
 
-    if request.method =="POST": # id the form has been posted 
+    elif request.method =="POST": # id the form has been posted 
         team.name = form.form_name.data # refere to model.py && send to the data base 
         team.city = form.form_city.data
         team.conference = form.form_conference.data
