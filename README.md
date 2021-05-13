@@ -1,5 +1,6 @@
 # Basketball App Project 
 
+
 ## Contents
 * [Introduction](#introduction) 
   * [Objective](#objective)
@@ -73,7 +74,6 @@ An outline of how CRUD will be implemented can be seen below.
 **Add players**:
 * PLayer name 
 * Player position 
- 
 
 ## Architecture
 
