@@ -1,7 +1,5 @@
 # Basketball App Project 
 
-
-
 ## Contents
 * [Introduction](#introduction) 
   * [Objective](#objective)
