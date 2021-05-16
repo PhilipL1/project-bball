@@ -70,7 +70,7 @@ An outline of how CRUD will be implemented can be seen below.
    * Team city 
    * Team conference 
    * Team rank
-   * 
+   
 **Add players**:
 * Button to add players to teams 
    * PLayer name 
