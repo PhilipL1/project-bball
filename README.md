@@ -73,7 +73,7 @@ An outline of how CRUD will be implemented can be seen below.
    
 **Add players**:
 * Button to add players to teams 
-   * PLayer name 
+   * Player name 
    * Player position 
 <br/>
 
@@ -82,19 +82,22 @@ An outline of how CRUD will be implemented can be seen below.
 My detailed Risk Assessment can be seen below, outlining the major and minor risks associated with this project.
 <br/>
 Here is a screenshot of my risk assessment at the start of my project:
+<br/>
 
 ![risk assessment image](https://i.imgur.com/vYA3mmn.png)
 <br/><br/>
 Below is a screenshot of additional risks that where added at the end of my project when the risks became clear:
+<br/>
 
 ![risk assessment image2](https://i.imgur.com/aM8dZDf.png)
-<br/><br/>
+<br/>
 The full risk assessment for this project can be found [here](https://docs.google.com/spreadsheets/d/1j92ZZFjaw2ThyvHosCYimrIyu2FGiy_rgDWGJiYk2zA/edit?usp=sharing). 
 <br/>
 
 ## Project Management 
 ### Trello Board
 Trello was used to track the progress of the project (pictured below). You can find the link to this board [here](https://trello.com/b/4UYzCR2H). I used Trello board rather than other project management tools such as Jira because it is free to use and user friendly which helps with visualisation of the project so that task can be completed efficiently.  
+<br/>
 
 ![After - trello board image](https://i.imgur.com/6vIvGiq.png)![](https://i.imgur.com/JiCgcf5.png)
 <br/><br/>
@@ -117,18 +120,22 @@ The elements of the project move left to right from point of conception which is
 ## Database Structure
 ### Entity Relationship Diagram
 Pictured below is an entity relationship diagram (ERD) showing the structure of the database. The relationship between these 2 tables is a one to many relationship thus the  foreign key is in the player table. As a result, a team can have many players but a player can have ONLY have one team in the database. 
+<br/>
 
 ![ERD image 1](https://i.imgur.com/8rIjm4P.png)
 <br/><br/>
 It was not a priority to create a many to many relationship however if I had enough time I would of created a many to many relationship using an associatation table that breaks into two many to one relationships. As a result, the relationship would of been a player can be on many teams and a team can have many players. The ERD is shown below. 
+<br/>
 
 ![ERD image 2](https://i.imgur.com/zDCwcN2.png)
 <br/>
 
 ## Analysis of Testing
 This project includes basic forms of testings which are unit and integration testing. There are other forms of testing that was not used in the project due to the level of complicity of the project and time. The image below shows other test that was not tested in this project. 
+<br/>
 
 ![image of some out-of-scope forms of testing](https://i.imgur.com/RSqnyl9.png)
+<br/>
 [reference](http://www.qafileshare.com/mcw/deloitte/deloitteselfstudy/PRDTRE.pdf)
 <br/>
 
@@ -179,7 +186,9 @@ If any of the unit testing fails, the entire Jenkins build is marked as a fail. 
 <br/>
 
 ![Picture of Coverage report 1](https://i.imgur.com/ya8qO3S.png)
+<br/>
 ![Picture of Coverage report 2](https://i.imgur.com/8xbmgAD.png)
+<br/>
 ![Picture of Coverage report 3](https://i.imgur.com/e3bIizj.png)
 <br/>
 
@@ -188,7 +197,7 @@ A functioning front-end website and integrated API's, using Flask was used in th
 <br/>
 When navigating to the home page (/home) or to the URL with no specified path, the user is given a list of current entries or a blank page waiting for teams to be created. 
 <br/>
-At the top of the page is a navigation bar (defined in a base layout template, and therefore available on every page). One of the links directs the user to the home page, and the other to a team creation page.
+At the top of the page is a navigation bar (defined in a base layout template, and therefore available on every page). One of the links directs the user to the home page and the other to a team creation page.
 <br/>
 
 ![home page image](https://i.imgur.com/nNxYIdu.png)
@@ -216,6 +225,7 @@ The picture below is a template of what my spreadsheet would of looked like; wit
 <br/>
 
 ![image of testing analysis document](https://i.imgur.com/iFr82ee.png)
+<br/>
 The document can be viewed [here](https://docs.google.com/spreadsheets/d/1G0hngrY3RG9x3Idi1l68PvQ4eNlrKRW-xB_Yy0FTvkU/edit?usp=sharing)
 <br/><br/>
 
