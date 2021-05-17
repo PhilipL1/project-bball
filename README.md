@@ -20,13 +20,11 @@
 ### Objective
 The objective provided for this project is as follows:
 > To create a CRUD application with utilisation of supporting tools,
-methodologies and technologies that encapsulate all core modules
-covered during training.
+methodologies and technologies that encapsulate all core modules covered during training.
 <br/>
 
 This will allow the trainers to:
 * Objectively assess candidates capability with the technologies and concepts you have been taught.
-<br/>
 * Assess your development against SFIA.
 
 More specifically, the following is required:
