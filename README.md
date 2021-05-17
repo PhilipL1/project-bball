@@ -20,13 +20,12 @@
 ### Objective
 The objective provided for this project is as follows:
 > To create a CRUD application with utilisation of supporting tools,
-methodologies and technologies that encapsulate all core modules
-covered during training.
+methodologies and technologies that encapsulate all core modules covered during training.
 <br/>
+
 This will allow the trainers to:
->* Objectively assess candidates capability with the technologies and concepts you have been taught.
-<br/>
->* Assess your development against SFIA.
+* Objectively assess candidates capability with the technologies and concepts you have been taught.
+* Assess your development against SFIA.
 
 More specifically, the following is required:
 * Functioning CRUD application created in Python
@@ -207,7 +206,7 @@ When the user navigates to the creation page (/create) a team entry is immediate
 
 ![creation page](https://i.imgur.com/lstOWLS.png)
 
-Once a field is submitted the user will be re-directed to the home page where all the relevant information can be viewd.
+Once a field is submitted the user will be re-directed to the home page where all the relevant information can be viewed.
 
 An update, delete and add player button is located directly under each team. These buttons are associated to each team so each function can perform accordingly for that specific team. 
 <br/>
